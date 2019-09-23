@@ -13,15 +13,32 @@ import (
 //
 // Since 0.1.0
 type Node struct {
-	Children map[int]*Node
-	Branches []int
-	Step     uint16
-	Value    interface{}
 
+	// Children nodes the Branches pointing to.
+	//
+	// Since 0.1.0
+	Children map[int]*Node
+
+	// Branches is a array of outgoing branch labels.
+	//
+	// Since 0.1.0
+	Branches []int
+
+	// Step is the number or "squash"-ed nodes along a branch.
+	//
+	// Since 0.1.0
+	Step uint16
+
+	// Value is user data bound to a leaf node.
+	//
+	// Since 0.1.0
+	Value interface{}
+
+	// squash indicates whether to remove nodes with only one child.
 	squash bool
 
-	// TODO inner node count. fix it
-	NodeCnt int
+	// InnerNodeCnt records the number of outgoing branches to inner nodes.
+	InnerNodeCnt int
 }
 
 const leafBranch = -1
@@ -35,7 +52,7 @@ const leafBranch = -1
 // Since 0.1.0
 func NewTrie(keys [][]byte, values interface{}, squash bool) (root *Node, err error) {
 
-	root = &Node{Children: make(map[int]*Node), Step: 1, squash: squash, NodeCnt: 1}
+	root = &Node{Children: make(map[int]*Node), Step: 1, squash: squash, InnerNodeCnt: 1}
 
 	if keys == nil {
 		return
@@ -100,8 +117,6 @@ func (r *Node) Squash() int {
 //   `>b------>f =2
 //     `>c->d->g =2 // "g" and "d" is removed, c has other child and is kept.
 //        `--->h =3
-//
-// Since 0.1.0
 func (r *Node) removeSameLeaf() {
 
 	var prevValue interface{} = nil
@@ -141,7 +156,7 @@ func (r *Node) removeSameLeaf() {
 					}
 				}
 				if !isLeaf {
-					r.NodeCnt--
+					r.InnerNodeCnt--
 				}
 
 			}
@@ -332,7 +347,7 @@ func (r *Node) Append(key []byte, value interface{}) (leaf *Node, err error) {
 		node.Branches = append(node.Branches, br)
 		node = n
 
-		r.NodeCnt++
+		r.InnerNodeCnt++
 	}
 
 	leaf = &Node{Value: value}
@@ -342,7 +357,7 @@ func (r *Node) Append(key []byte, value interface{}) (leaf *Node, err error) {
 
 	if commonNode.squash {
 		if ltNode != nil {
-			r.NodeCnt -= ltNode.Squash()
+			r.InnerNodeCnt -= ltNode.Squash()
 		}
 	}
 

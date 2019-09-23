@@ -598,7 +598,7 @@ func TestTrie_removeSameLeaf(t *testing.T) {
 	fmt.Println(trie)
 
 	ta.Equal(want, trie.String())
-	ta.Equal(9, trie.NodeCnt, "non-leaf node count")
+	ta.Equal(9, trie.InnerNodeCnt, "non-leaf node count")
 }
 
 func TestTrie_UnsquashedSearch(t *testing.T) {
