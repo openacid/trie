@@ -47,9 +47,9 @@ errcheck:
 	$(GO) get github.com/kisielk/errcheck
 	errcheck $(PKGS)
 
-gofmt:  
+gofmt:
 	@echo Checking code is gofmted
-	@test -z "$(shell gofmt -s -l -d -e $(SRCDIRS) | tee /dev/stderr)"
+	@test -z "$(shell gofmt -s -l -d -e $(GOFILES) | tee /dev/stderr)"
 
 fix:
 	gofmt -s -w $(GOFILES)

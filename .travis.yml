@@ -1,11 +1,10 @@
-
 language: go
-
 go:
-    - 1.11.x
-    - 1.12.x
-    - tip
-
+- 1.11.x
+- 1.12.x
+- tip
 script:
-    - make travis
-
+- make travis
+env:
+  global:
+    secure: npEOjLwOCY7bMtNMEbHvK4qv7NSyTBUHZ/t5yRHeNAImq6Pq96N4lEAGJBp411frvCwUWpyv5zYB1SBQH77OPxpxHtBjUh2uwi4izTdTlchKc7vrb+9v+iV5rXzwkGEBMj2tbHEWpV/bIchglY6H9lUAg1f7Xm846X12RvZOp87z8YagYZmfrpNT6AiB0iDRzzMQjFvVN6ivkiANhYq36vC/YGrRynRvPSsvP8kGMFlMgr2fLPAnDCp2h6XwnZjOUM75rv6PEnrH3qFyLle9d7jEkn6Y3IHqWKdxbQBQogYSSqtoiriAbBVTs0pV7kbcTcUqHcJpwS1Fws+JYUv8eSFv7N9XLHcsg0NIP6vpE9UiajvYFPZAI+D30xiZ/8dUbX9mWchtM6WCSaRrZECKVEv7gsc9mNbD5dlDXnm2dJTm0icqKXmjwyE+VNJTqXN9NR889DlQGCZADjiQ3QEFRmQrBnw3MaXQ8DRMfGQuVXL6+1nTQ8bPEF2UEKwb3lGXd+Oib0yh5A5a125uNIhU9tXQtZK9leF1vWtaZ9JgRQYdRgdy4lKrY+IvwljcG+64tvuXuHfzyTRBjFAP9dgXtHMQuGucbsTS5zVcOwfokMxr9UxUGOiyDInl5d26AUJAocYJTbgd7UHNfS9x55F8c5Nl3Bdn58DrqwdTKJF6AzM=
