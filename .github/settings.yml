@@ -1,0 +1,7 @@
+_extends: gh-config
+
+
+repository:
+  name: trie
+  description: Pointer based trie in golang.
+  topics: go, golang, trie
